@@ -10,7 +10,7 @@ def home(request):
 
 def detail(request, project_id):
     project_detail = get_object_or_404(Post, pk=project_id)
-    return render(request, 'detail.html',{'project_detail': project_detail})
+    return render(request, 'detail.html',{'post': project_detail})
 
 def new(request):
     return render(request,'new.html')
@@ -35,4 +35,4 @@ def update(request):
     update_post.writer = request.POST ['writer']
     update_post.body = request.POST['body']
     update_post.save()
-    return render('/app_board/'+str(update_post.id))
+    return render('/app_board/'+str(update_project.id))
