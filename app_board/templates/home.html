@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
 <h1>
     homepage
 </h1>
@@ -9,4 +13,7 @@
     <p>{{post.date}}</p>
     <h2>{{post.writer}}</h2>
     <p>{{post.summary}}<a href="{% url 'detail' post.id %}">...more </a></p>
-{%endfor%} 
+
+{% endfor %}
+
+{%endblock%}

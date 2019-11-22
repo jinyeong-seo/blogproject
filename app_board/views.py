@@ -28,11 +28,17 @@ def edit(request, project_id):
     edit_post= Post.objects.get(id=project_id)
     return render(request, 'edit.html', {'post':edit_post})
 
-def update(request):
+def update(request, project_id):
     update_post = Post.objects.get(id= project_id)
     update_post.name = request.POST['name']
     update_post.date = timezone.datetime.now()
     update_post.writer = request.POST ['writer']
     update_post.body = request.POST['body']
     update_post.save()
-    return render('/app_board/'+str(update_project.id))
+    return redirect('/app_board/'+str(update_post.id))
+
+def delete(requst,project_id):
+    delete_post = Post.objects.get( id = project_id)
+    delete_post.delete()
+    return redirect('home')
+    

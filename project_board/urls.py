@@ -20,9 +20,5 @@ import app_board.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app_board.views.home, name="home"),
-    path('/app_board/<int:project_id>', app_board.views.detail, name="detail"),
-    path('new/', app_board.views.new, name='new'),
-    path('create/', app_board.views.create, name='create'),
-    path('/edit/<int:project_id>', app_board.views.edit, name="edit"),
-    path('/update/<int:project_id>', app_board.views.update, name="update")
+    path('app_board/', include('app_board.urls'),)
 ]
