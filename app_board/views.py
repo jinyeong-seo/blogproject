@@ -1,12 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def home(request):
-    posts = Post.objects
-    return render(request, 'home.html',{'posts': posts})
+    post = Post.objects
+    post_list = Post.objects.all()
+    paginator = Paginator(post_list,3)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'home.html',{'post': post, 'posts':posts})
 
 def detail(request, project_id):
     project_detail = get_object_or_404(Post, pk=project_id)

@@ -5,15 +5,33 @@
 <h1>
     homepage
 </h1>
+
+
 <br>
 <a href = "{%url 'new'%}">새 글 작성하기</a>
 
-{% for post in posts.all %}
+{% for post in posts %}
     <h1>{{post.name}}</h1>
     <p>{{post.date}}</p>
     <h2>{{post.writer}}</h2>
     <p>{{post.summary}}<a href="{% url 'detail' post.id %}">...more </a></p>
 
 {% endfor %}
+
+<div class="page">
+    {% if posts.has_previous %}
+    <a href="?page=1">처음 페이지</a>
+    <a href="?page={{posts.previous_page_number}}">이전 페이지</a>
+    {% endif %}
+
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+
+    {%if posts.has_next%}
+    <a href="?page={{posts.next_page_number}}">다음 페이지</a>
+    <a href="?page={{posts.paginator.num_pages}}">마지막 페이지</a>
+    {%endif%}
+</div>
 
 {%endblock%}
